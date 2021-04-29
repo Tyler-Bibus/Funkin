@@ -56,7 +56,7 @@ class StoryMenuState extends MusicBeatState
 		"MOMMY MUST MURDER",
 		"RED SNOW",
 		"hating simulator ft. moawling",
-		"Micro Your Macro ft. Jake"
+		"Micro Your Macro"
 	];
 
 	var txtWeekTitle:FlxText;
