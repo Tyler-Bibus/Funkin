@@ -540,32 +540,47 @@ class PlayState extends MusicBeatState
 		                            add(waveSpriteFG);
 		                    */
 		          }
-				   case 'imba' | 'cannon-rushed' | 'bad-terran':
-		          {
-		                  defaultCamZoom = 0.9;
-		                  curStage = 'week7';
-		                  var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
-		                  bg.antialiasing = true;
-		                  bg.scrollFactor.set(0.9, 0.9);
-		                  bg.active = false;
+				case 'imba' | 'cannon-rushed' | 'bad-terran': 
+                        {
+		                  curStage = 'micro';
+
+		                  var bg:FlxSprite = new FlxSprite(-100).loadGraphic(Paths.image('philly/sky'));
+		                  bg.scrollFactor.set(0.1, 0.1);
 		                  add(bg);
 
-		                  var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront'));
-		                  stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-		                  stageFront.updateHitbox();
-		                  stageFront.antialiasing = true;
-		                  stageFront.scrollFactor.set(0.9, 0.9);
-		                  stageFront.active = false;
-		                  add(stageFront);
+	                          var city:FlxSprite = new FlxSprite(-10).loadGraphic(Paths.image('philly/city'));
+		                  city.scrollFactor.set(0.3, 0.3);
+		                  city.setGraphicSize(Std.int(city.width * 0.85));
+		                  city.updateHitbox();
+		                  add(city);
 
-		                  var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
-		                  stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-		                  stageCurtains.updateHitbox();
-		                  stageCurtains.antialiasing = true;
-		                  stageCurtains.scrollFactor.set(1.3, 1.3);
-		                  stageCurtains.active = false;
+		                  phillyCityLights = new FlxTypedGroup<FlxSprite>();
+		                  add(phillyCityLights);
 
-		                  add(stageCurtains);
+		                  for (i in 0...5)
+		                  {
+		                          var light:FlxSprite = new FlxSprite(city.x).loadGraphic(Paths.image('philly/win' + i));
+		                          light.scrollFactor.set(0.3, 0.3);
+		                          light.visible = false;
+		                          light.setGraphicSize(Std.int(light.width * 0.85));
+		                          light.updateHitbox();
+		                          light.antialiasing = true;
+		                          phillyCityLights.add(light);
+		                  }
+
+		                  var streetBehind:FlxSprite = new FlxSprite(-40, 50).loadGraphic(Paths.image('philly/behindTrain'));
+		                  add(streetBehind);
+
+	                          phillyTrain = new FlxSprite(2000, 360).loadGraphic(Paths.image('philly/train'));
+		                  add(phillyTrain);
+
+		                  trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes'));
+		                  FlxG.sound.list.add(trainSound);
+
+		                  // var cityLights:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.win0.png);
+
+		                  var street:FlxSprite = new FlxSprite(-40, streetBehind.y).loadGraphic(Paths.image('philly/street'));
+	                          add(street);
 		          }
 		          default:
 		          {
